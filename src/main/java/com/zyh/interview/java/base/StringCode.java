@@ -2,7 +2,7 @@
  * @author zhanyuhao
  * @time 2023/1/26 15:31
  */
-package com.zyh.interview.p1;
+package com.zyh.interview.java.base;
 
 public class StringCode {
     public static void main(String[] args) {

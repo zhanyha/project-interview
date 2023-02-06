@@ -2,7 +2,7 @@
  * @author zhanyuhao
  * @time 2023/1/26 13:54
  */
-package com.zyh.interview.p1;
+package com.zyh.interview.java.base;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

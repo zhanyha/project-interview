@@ -2,7 +2,7 @@
  * @author zhanyuhao
  * @time 2023/1/28 21:36
  */
-package com.zyh.interview.p1;
+package com.zyh.interview.java.base;
 
 import java.io.IOException;
 
