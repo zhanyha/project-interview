@@ -22,7 +22,7 @@ L1 two sum
 > 直到遍历完数组，结束
 
 L15 three sum
-
+> 注意排序配合set去重的技巧
 
 L18 four sum
 
