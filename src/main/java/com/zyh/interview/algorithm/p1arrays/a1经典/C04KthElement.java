@@ -35,12 +35,15 @@ public class C04KthElement {
     private int partition(int[] nums, int l, int r) {
         int base = l; // 这里要注意 = l
         while (l <= r) {
-            while (l <= r && nums[l] >= nums[base])
+            while (l <= r && nums[l] >= nums[base]) {
                 l++;
-            while (l <= r && nums[r] <= nums[base])
+            }
+            while (l <= r && nums[r] <= nums[base]) {
                 r--;
-            if (l < r)
+            }
+            if (l < r) {
                 swap(nums, l, r);
+            }
         }
         swap(nums, r, base); // 永远和左边的交换， 也就是r
         return r;

@@ -17,11 +17,13 @@ public class C1HappyNumber {
             for (int i = 0; i < s.length(); i++) {
                 sum += ( s.charAt(i) - '0' )*( s.charAt(i) - '0');
             }
-            if(sum == 1)
+            if(sum == 1) {
                 return true;
+            }
             s = String.valueOf(sum);
-            if(set.contains(s))
+            if(set.contains(s)) {
                 return false;
+            }
             set.add(s);
         }
     }

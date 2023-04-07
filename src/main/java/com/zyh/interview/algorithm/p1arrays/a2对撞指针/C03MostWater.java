@@ -19,10 +19,11 @@ public class C03MostWater {
         int area = 0;
         while (l < r) {
             area = Math.max(area,(r - l) * Math.min(height[l], height[r]));
-            if (height[l] < height[r])
+            if (height[l] < height[r]) {
                 l++;
-            else
+            } else {
                 r--;
+            }
         }
         return area;
     }

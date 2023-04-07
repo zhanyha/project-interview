@@ -21,9 +21,9 @@ public class C02Palindrome {
                     && !(s.charAt(r) >= '0'&& s.charAt(r) <= '9')){
                 r--;
             }
-            if(s.charAt(l) != s.charAt(r))
+            if(s.charAt(l) != s.charAt(r)) {
                 return false;
-            else{
+            } else{
                 l ++;
                 r --;
             }

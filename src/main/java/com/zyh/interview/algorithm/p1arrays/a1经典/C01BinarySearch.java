@@ -17,12 +17,13 @@ public class C01BinarySearch {
         int l = 0, r = arr.length - 1; //[l ... r] 之间搜索data
         while(l <= r){
             int mid = l + ((r - l) >> 1);
-            if(arr[mid] == data)
+            if(arr[mid] == data) {
                 return mid;
-            else if(arr[mid] < data)
+            } else if(arr[mid] < data) {
                 l = mid + 1;
-            else
+            } else {
                 r = mid - 1;
+            }
         }
         return -1;
     }

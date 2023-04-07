@@ -26,8 +26,8 @@ public class C7FourSum {
         for (int i = 0; i < nums.length; i++) {
             map.put((long) (nums[i]), i);
         }
-        for (int i = 0; i < nums.length; i++)
-            for (int j = i + 1; j < nums.length; j++)
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = i + 1; j < nums.length; j++) {
                 for (int k = j + 1; k < nums.length; k++) {
                     long left = (long) (target) - (long) (nums[i]) - (long) (nums[j]) - (long) (nums[k]);
                     String idStr = target + " " + nums[i] + " " + nums[j] + " " + nums[k];
@@ -37,6 +37,8 @@ public class C7FourSum {
                         res.add(Arrays.asList((int) left, nums[i], nums[j], nums[k]));
                     }
                 }
+            }
+        }
         return res;
     }
 
@@ -57,8 +59,6 @@ public class C7FourSum {
                             Collections.sort(ans);
                             if (!resp.contains(ans)) {
                                 resp.add(ans);
-                            }else{
-                                System.out.println("a");
                             }
                         }
                     }
