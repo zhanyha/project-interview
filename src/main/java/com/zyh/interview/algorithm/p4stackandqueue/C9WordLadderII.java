@@ -1,29 +1,15 @@
 package com.zyh.interview.algorithm.p4stackandqueue;
 
+import com.sun.javafx.collections.MapAdapterChange;
+
 import java.util.*;
 
 /**
- * @description: 单词接龙
+ * @description:  单词接龙 II
  * @author：zhanyh
  * @date: 2023/4/14
- * 字典 wordList 中从单词 beginWord 和 endWord 的 转换序列
- * 每一对相邻的单词只差一个字母。对于 1 <= i <= k 时，每个 si 都在 wordList 中。
- * 注意， beginWord 不需要在 wordList 中。
- * 输入：beginWord = "hit", endWord = "cog",
- * wordList = ["hot","dot","dog","lot","log","cog"]
- * 输出：5
- * 解释：一个最短转换序列是 "hit" -> "hot" -> "dot" -> "dog" -> "cog", 返回它的长度 5。
- * endWord可能不会出现再wordList中
- * <p>
- * 1 <= beginWord.length <= 10
- * endWord.length == beginWord.length
- * 1 <= wordList.length <= 5000
- * wordList[i].length == beginWord.length
- * beginWord、endWord 和 wordList[i] 由小写英文字母组成
- * beginWord != endWord
- * wordList 中的所有字符串 互不相同
  */
-public class C8WordLadder {
+public class C9WordLadderII {
     class Pair {
         String word;
         int step;
@@ -34,24 +20,38 @@ public class C8WordLadder {
         }
     }
 
-    private Map<String, Boolean> visited;
+    private Set<String> visited;
     private HashSet<String> wordSet;
 
-    public int ladderLength(String beginWord, String endWord, List<String> wordList) {
+    // Map<下一个节点，当前节点> 方便快速找到下一个节点是从哪个节点来的
+    private Map<String, String> paths = new HashMap<>();
+
+    public List<List<String>> findLadders(String beginWord, String endWord, List<String> wordList) {
         wordSet = new HashSet<>(wordList);
-        if (!wordSet.contains(endWord)) return 0;
-        visited = new HashMap<>();
+        if (!wordSet.contains(endWord)) return null;
+        List<List<String>> res = new ArrayList<>();
+        visited = new HashSet<>();
         Queue<Pair> que = new ArrayDeque<>();
         que.add(new Pair(beginWord, 0));
-        visited.put(beginWord, true);
+        visited.add(beginWord);
         while (!que.isEmpty()) {
             Pair poll = que.poll();
-            if (poll.word.equals(endWord))
-                return poll.step + 1;
+            if (poll.word.equals(endWord)) {
+                List<String> line = new ArrayList<>();
+                line.add(endWord);
+                String s = paths.get(endWord);
+                while (!s.equals(beginWord)){
+                    line.add(s);
+                    s = paths.get(s);
+                }
+                line.add(beginWord);
+                Collections.reverse(line);
+                res.add(line);
+            }
             List<Pair> nexts = nextStatus(poll);
             que.addAll(nexts);
         }
-        return 0;
+        return res;
     }
 
     private List<Pair> nextStatus(Pair pair) {
@@ -62,9 +62,11 @@ public class C8WordLadder {
                 if (pair.word.charAt(i) != ch) {
                     chars[i] = ch;
                     String newStr = String.valueOf(chars);
-                    if (wordSet.contains(newStr) && visited.get(newStr) == null) {
+                    if (wordSet.contains(newStr) && !visited.contains(newStr)) {
                         nexts.add(new Pair(newStr, pair.step + 1));
-                        visited.put(newStr, true);
+                        visited.add(newStr);
+                        // 记录下一个可能的节点是从当前节点来的
+                        paths.put(newStr, pair.word);
                     }
                     chars[i] = pair.word.charAt(i);
                 }
@@ -78,6 +80,6 @@ public class C8WordLadder {
         List<String> words = new ArrayList<>(Arrays.asList(wordList));
         String begin = "hit";
         String end = "cog";
-        System.out.println(new C8WordLadder().ladderLength(begin, end, words));
+        System.out.println(new C9WordLadderII().findLadders(begin, end, words));
     }
 }
