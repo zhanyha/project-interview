@@ -305,11 +305,23 @@ L347
 L23
 
 # 二叉树和递归
+L104 二叉树的最大深度
 
-L104
+L111 二叉树的最小深度
+**注意递归的终止条件**
+```java
+题目求解的答案必须到叶子节点的话
+if (root.left == null && root.right == null)
+    return xxxx; // 递归的终止条件之一
+        
+因为使用了root.xxxx 所以root不能为null
+那么之前还需要加上另外一个终止条件
+if(root == null)
+    return xxxx;
+```
 
+> 可以把一些特俗情况先判断了，然后编写一个XXXCore函数，在XXXCore递归函数中完成一般情况
 
-L111
 
 L226
 
@@ -325,6 +337,16 @@ L110 Balanced Binary Tree
 
 L112 Path Sum
 > 注意递归的终止条件
+> 1. 如果强调了必须终止在叶子节点，那么应该判断 
+```java
+if(node.left == null && node.right == null)
+     return;
+```
+> 2. 如果没有强调叶子节点，那么终止条件应该判断
+```java
+if(node == null)
+     return;
+```
 
 L404
 
@@ -336,6 +358,9 @@ L113
 
 L129
 
+
+# 更复杂的递归逻辑
+L437
 
 
 
