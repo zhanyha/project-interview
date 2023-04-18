@@ -295,12 +295,49 @@ L126
 ## 优先队列
 用一个数组实现堆
 调研PriorityQueue的API, 随机插入10个数字，并取出，看是最大堆还是最小堆
-Compartor
+> 小顶堆， 小的在上面就是小顶堆
+> [1, 3, 6, 5, 4, 2] -> [1,2,3,4,5,6]
+
+利用Comparator实现最大堆
+**compare函数中两个参数位置的记忆方法**：
+> o1 - o2  1,2 所以是升序
+> o2 - o1  2,1 所以是降序
+```java
+new Comparator<Integer>() {
+     @Override
+     public int compare(Integer o1, Integer o2) {
+        return o2 - o1;
+     }
+}
+```
+> 大顶堆， 大的在上面就是大顶堆
+> [1, 3, 6, 5, 4, 2] -> [6,5,4,3,2,1]
 
 使用PriorityQueue实现数字按个位数排序
-
+```java
+public static void main(String[] args) {
+   PriorityQueue<Integer> queue = new PriorityQueue<>(new Comparator<Integer>() {
+       @Override
+       public int compare(Integer o1, Integer o2) {
+           return o1 % 10 - o2 % 10;
+       }
+   });
+   int[] nums = new int[]{51, 93, 66, 85, 14, 12};
+   for (int i = 0; i < nums.length; i++) {
+       queue.add(nums[i]);
+   }
+   while (!queue.isEmpty()){
+       Integer poll = queue.poll();
+       System.out.print(poll + ",");
+   }
+}
+```
+输出：
+```51,12,93,14,85,66```
 L347
-
+PriorityQueue传入的是比较器Comparator
+如果不想传，那么添加元素的类型必须是可比较的，
+如果是自定义的类， 必须实现Comparable接口
 
 L23
 
