@@ -359,20 +359,24 @@ if(root == null)
 
 > 可以把一些特俗情况先判断了，然后编写一个XXXCore函数，在XXXCore递归函数中完成一般情况
 
+L226  翻转二叉树
 
-L226
+L100  相同的树
 
-L100
+L101 对称二叉树
 
-L101
 
-L222
+L222 完全二叉树的节点个数
 可以写一个求任何一颗二叉树的节点
-但是求完全二叉树有更快的方法，满二叉树的有转满快速求出、
 
-L110 Balanced Binary Tree
 
-L112 Path Sum
+
+L110 判断平衡二叉树
+> 设置私有变量
+> private boolean res;
+
+
+L112 路径总和
 > 注意递归的终止条件
 > 1. 如果强调了必须终止在叶子节点，那么应该判断 
 ```java
@@ -384,26 +388,126 @@ if(node.left == null && node.right == null)
 if(node == null)
      return;
 ```
+# 稍复杂的递归逻辑
+L257 二叉树的所有路径
+> ** 递归问题中， 如果有返回值 **
+> 思考问题的方式是：拿到左子树的返回值怎么做？拿到右子树的返回值又该怎么做？
 
-L404
+L113 路径总和 II
+** 递归中保留结果的方式 **
+比如： 函数需要返回List<List<Integer>>
+> 设置外部私有变量， 
+```java
+private List<List<Integer>> res = new ArrayList();
+```
+并且在辅助方法上加上一个`List<Integer>`类型的参数，保留递归时候的结果
+在退出条件的时候，如果找到了一个满足题意得答案，就添加到res中，
+这类问题，还需要回溯.
+一个模板代码
+```java
+private List<List<Integer>> res = new ArrayList<>();
 
-## 稍复杂的递归逻辑
-L257
+    public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
+        if (root == null)
+            return res;
+        List<Integer> list = new ArrayList<>();
+        pathSumCore(root, targetSum, list);
+        return res;
+    }
 
+    private void pathSumCore(TreeNode root, int targetSum, List<Integer> list) {
+        if(root == null)
+            return;
+        if(root.left == null && root.right == null){
+            if(root.val == targetSum){
+                list.add(root.val);
+                res.add(new ArrayList<>(list));
+                list.remove(list.size() - 1);
+            }
+            return;
+        }
+        list.add(root.val);
+        pathSumCore(root.left, targetSum - root.val, list);
+        pathSumCore(root.right, targetSum - root.val, list);
+        list.remove(list.size() - 1);
+    }
+```
+L129 求根节点到叶节点数字之和
 
-L113
-
-L129
-
+> 套用上面得模板即可
 
 # 更复杂的递归逻辑
 L437
 
 
+# 二分搜索树
+L235
+
+
+L98
+
+
+L450
+
+
+L108
+
+L230
+partition
+
+L236
 
 
 
+# *递归和回溯法
+## 树形问题
+L17
+树形问题递归就是从节点发散出去多条线
+一般就是在循环中递归， 循环的对象就是发散出去的元素组成的列表。
+如果需要知道到每个结点的结果——在递归上加一个参数。
+这个参数是非引用类型的，不需要回溯
+这个参数是引用类型的，会影响其他节点上的结果， 因此，需要回溯
 
+L93
+
+L131
+
+##  树形问题————排列问题
+L46
+
+L47
+
+##  树形问题————组合问题
+L77
+
+L39
+
+L40
+
+L216
+##  树形问题————子集问题
+L78
+
+L90
+
+L401
+
+## 二维平面上使用回溯法
+L79
+
+## 二维平面上使用回溯法——floodfill算法
+L200
+
+
+L130
+
+L417
+
+## 二维平面搜索问题
+L51
+L52
+
+L37
 
 
 

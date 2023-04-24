@@ -1,4 +1,7 @@
-package com.zyh.interview.algorithm.p5tree;
+package com.zyh.interview.algorithm.p5tree.a1travel;
+
+import com.zyh.interview.algorithm.p5tree.BinaryTreeUtils;
+import com.zyh.interview.algorithm.p5tree.TreeNode;
 
 /**
  * @description: 二叉树的最小深度
