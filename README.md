@@ -465,6 +465,77 @@ partition
 
 L236
 
+# 5. 树的问题总结
+1. **题目强调必须到叶子节点才符合题意。**
+```java
+/* 因为，叶子节点已经判断了，所以不会出现root的两边都是空的情况，
+那出现root == null的情况是root只有一个孩子节点，下次递归的时候就会走到root==null
+那么，应该思考这种情况的退出条件是什么。
+ */
+if(root == null)
+    return xxxx; //因为使用了root.left/right 所以root不能为null 
+if (root.left == null && root.right == null)
+    return xxxx; // 递归的终止条件之一
+```
+
+2. **需要重新写一个递归函数的题目**
+> 可以把一些特俗情况先判断了，然后编写一个XXXCore函数，在XXXCore递归函数中完成一般情况
+
+3. **递归问题中， 如果有返回值** 
+>思考问题的方式是：拿到左子树的返回值怎么做？拿到右子树的返回值又该怎么做？
+
+4. **递归中保留结果的方式**
+比如： 函数需要返回List<List>
+> 1. 设置外部私有变量
+```java
+private List<List<Integer>> res = new ArrayList();
+```
+
+用于 保存所有递归终止位置的结果， 也就是所有符合题意得结果。
+
+> 2. 并且在辅助方法上加上一个List<Integer>类型的参数，保留递归时候的结果
+
+
+在退出条件的时候，如果找到了一个满足题意得答案，就添加到res中， 
+这类问题，还需要回溯. 一个模板代码。
+
+
+```java
+/* 求根节点到叶子节点路径元素之和等于target的路径 */
+private List<List<Integer>> res = new ArrayList<>();
+
+public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
+   if (root == null)
+       return res;
+   List<Integer> list = new ArrayList<>();
+   pathSumCore(root, targetSum, list);
+   return res;
+}
+
+private void pathSumCore(TreeNode root, int targetSum, List<Integer> list) {
+   if(root == null)
+       return;
+   if(root.left == null && root.right == null){
+       if(root.val == targetSum){
+           list.add(root.val);
+           res.add(new ArrayList<>(list));
+           list.remove(list.size() - 1);
+       }
+       return;
+   }
+   list.add(root.val);
+   pathSumCore(root.left, targetSum - root.val, list);
+   pathSumCore(root.right, targetSum - root.val, list);
+   list.remove(list.size() - 1);
+}
+```
+5. dfs
+比如： 求二叉树的左孩子之和。
+
+
+6. bfs
+比如： 求二叉树的右视图
+其实就是二叉树的层序遍历，取每一层的最后一个元素即可。
 
 
 # *递归和回溯法
