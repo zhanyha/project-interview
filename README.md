@@ -572,12 +572,12 @@ L131 分割回文串
 
 
 
-##  树形问题————排列问题
-L46
+##  树形问题————排列问题 --------- **遍历递归问题**
+L46 全排列
 
 全排列是很多问题的暴力解法
 本质也是一种树形问题————套用树形问题的模板
-> 1. 设置类的私有属性res
+> 1. 设置类的私有属性res， 类型就是返回值的类型
 > 2. 编写辅助递归函数，确定函数的参数，（一般需要加上res的元素的所属类型,如下例子）
 ```java
 private List<List<String>> res;
@@ -586,39 +586,105 @@ XXXCore(xx xx, List<String> list);
 > 3. 树形问题递归就是从节点发散出去多条线， 一般就是在循环中递归， 循环的对象就是发散出去的元素组成的列表。
 > 4. 这个参数是非引用类型的，不需要回溯。 
 >    这个参数是引用类型的，会影响其他节点上的结果， 因此，需要回溯
+     
+字符串在本次递归不想被修改，应该在递归函数中 s + letters[i] 如果在递归函数外部加上s += letters[i]， 
+再把s传入递归函数中, 此时还需要回溯。
+
+L47 含重复元素的全排列
+
+一种，二维数组去重，就是列表转字符串
+
+另一种，更好的方法是剪枝
+
+![](./doc/img/1674877014-GhcSpO-image.png)
+要点：
+先排序： 排序能够保证相同的元素的一定是相邻的。
+当`nums[i] = num[i-1]` 说明选到了相同的元素
+如果: `used[i-1]=false` 说明在这一树层重复（这种是不被允许的）
+如果: `used[i-1]=true` 说明在树枝上重复（这种是可允许的）
+
+核心代码
+```java
+Arrays.sort(nums);
+
+ if(i > 0 && nums[i] == nums[i - 1] && !used[i - 1])
+     continue;
+```
+全部代码
+```java
+private List<List<Integer>> res;
+
+public List<List<Integer>> permuteUnique(int[] nums) {
+   Arrays.sort(nums);
+   res = new ArrayList<>();
+   boolean[] used = new boolean[nums.length];
+   if (nums.length == 0) return res;
+   List<Integer> list = new ArrayList<>();
+   permuteUniqueCore(nums, list, used);
+   return res;
+}
+
+private void permuteUniqueCore(int[] nums, List<Integer> list, boolean[] used) {
+   if (list.size() == nums.length) {
+       res.add(new ArrayList<>(list));
+       return;
+   }
+   for (int i = 0; i < nums.length; i++) {
+       if(i > 0 && nums[i] == nums[i - 1] && !used[i - 1])
+           continue;
+       if (!used[i]) {
+           used[i] = true;
+           list.add(nums[i]);
+           permuteUniqueCore(nums, list,used);
+           list.remove(list.size() - 1);
+           used[i] = false;
+       }
+   }
+}
+```
 
 
-L47
+##  树形问题————组合问题  --------- **遍历递归问题**
+
+L77 组合 
+
+本质也是一种树形问题————套用树形问题的模板
+
+L39 组合总和
+
+可以重复选， 但是没有重复的元素
+
+### L40 组合总和II
+
+元素只能选1次，但是包含重复元素。
+
+因此，需要去重。
+
+如果采用的是选和不选问题（二叉树形递归）的思考方式
+那么去重的手段就是：**如果选择不要当前数字时，直接跳过所有与之重复的数字，去下一个不同的数字位置上继续尝试**
+
+如果采用的循环递归（多叉树形递归）的思考方式
+**那么就是之前的剪枝手段，先排序，再判断是数层相同还是树枝相同。数层相同是会造成结果重复的，应该剪枝。**
+
+
+L216 组合总和 III
 
 
 
-##  树形问题————组合问题
-L77
+##  树形问题————子集问题 --------- **遍历递归问题**
+
+L78 子集
 
 
 
-L39
+
+L90 子集去重问题
+
+如果采用的循环递归（多叉树形递归）的思考方式
+**那么就是之前的剪枝手段，先排序，再判断是数层相同还是树枝相同。数层相同是会造成结果重复的，应该剪枝。**
 
 
-
-L40
-
-
-
-L216
-
-
-
-##  树形问题————子集问题
-L78
-
-
-
-L90
-
-
-
-L401
+L401  二进制手表
 
 
 
