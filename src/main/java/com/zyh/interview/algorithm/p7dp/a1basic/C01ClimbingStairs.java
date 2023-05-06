@@ -1,4 +1,4 @@
-package com.zyh.interview.algorithm.p7dp;
+package com.zyh.interview.algorithm.p7dp.a1basic;
 
 import java.util.Arrays;
 

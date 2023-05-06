@@ -1,6 +1,4 @@
-package com.zyh.interview.algorithm.p7dp;
-
-import java.util.Arrays;
+package com.zyh.interview.algorithm.p7dp.a1basic;
 
 /**
  * @description: 70. 爬楼梯

@@ -1,4 +1,4 @@
-package com.zyh.interview.algorithm.p7dp;
+package com.zyh.interview.algorithm.p7dp.a1basic;
 
 /**
  * @description: 64. 最小路径和
