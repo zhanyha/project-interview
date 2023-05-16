@@ -1,8 +1,7 @@
-package com.zyh.interview.java.socket.test01;
+package com.zyh.interview.java.socket.bio.test01;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 
@@ -10,6 +9,8 @@ import java.net.Socket;
  * @description:
  * @author：zhanyh
  * @date: 2023/5/13
+ *
+ * Socket 和 ServerSocket 是一对 他们是java.net下面实现socket通信的类
  */
 public class SocketTCPClient {
     public static void main(String[] args) throws IOException {

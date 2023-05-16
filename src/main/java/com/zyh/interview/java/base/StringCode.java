@@ -22,5 +22,15 @@ public class StringCode {
         String c = "str" + "ing";// 常量池中的对象
         String d = str11 + str22; // 常量池中的对象 final 修饰后，编译期间就能确定。
         System.out.println(c == d);// true
+
+        String s = new String("2");
+        s.intern();
+        String s2 = "2";
+        System.out.println(s == s2);
+
+        String s3 = new String("3") + new String("3");
+//        s3.intern();
+        String s4 = "33";
+        System.out.println(s3 == s4);
     }
 }

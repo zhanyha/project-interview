@@ -1,4 +1,4 @@
-package com.zyh.interview.java.socket.test02;
+package com.zyh.interview.java.socket.bio.test02;
 
 import java.io.BufferedWriter;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package com.zyh.interview.java.socket.test01;
+package com.zyh.interview.java.socket.bio.test02;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,7 +21,7 @@ public class SocketTCPServer {
         byte[] buff = new byte[1024];
         int dataLen;
         while ((dataLen = is.read(buff)) != -1) {
-            System.out.print(new String(buff, 0, dataLen, "gbk"));
+            System.out.print(new String(buff, 0, dataLen));
         }
         System.out.println();
         is.close();
