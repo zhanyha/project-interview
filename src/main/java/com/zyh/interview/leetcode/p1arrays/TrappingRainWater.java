@@ -1,4 +1,4 @@
-package com.zyh.interview.leetcode.arrays;
+package com.zyh.interview.leetcode.p1arrays;
 
 /**
  * @description: 42. 接雨水

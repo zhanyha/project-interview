@@ -1,4 +1,4 @@
-package com.zyh.interview.leetcode.dfs;
+package com.zyh.interview.leetcode.p6recursion.dfs;
 
 import java.util.ArrayList;
 import java.util.List;

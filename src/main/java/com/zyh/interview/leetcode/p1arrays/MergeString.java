@@ -1,4 +1,4 @@
-package com.zyh.interview.leetcode.arrays;
+package com.zyh.interview.leetcode.p1arrays;
 
 import java.util.ArrayList;
 import java.util.Arrays;
