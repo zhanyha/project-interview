@@ -6,7 +6,7 @@ package com.zyh.interview.one.p1array.a1classic;
  * @date: 2023/6/28
  */
 //https://leetcode.cn/problems/kth-largest-element-in-an-array
-public class O06KthElement {
+public class O04KthElement {
     private int res = -1;
 
     public int findKthLargest(int[] nums, int k) {
@@ -50,6 +50,6 @@ public class O06KthElement {
 
     public static void main(String[] args) {
         int[] nums = {1, 5, 2, 7, 4};
-        System.out.println(new O06KthElement().findKthLargest(nums, 2));
+        System.out.println(new O04KthElement().findKthLargest(nums, 2));
     }
 }
