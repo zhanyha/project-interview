@@ -37,11 +37,53 @@
 
 #### 2.2 对撞指针
 
-
+一般在有序的情况。
 
 #### 2.3 滑动窗口
 
     题目关键词 ： 连续 子数组 子串
+
+一个模板
+
+模板的解析：
+
+[我写了一首诗，把滑动窗口算法变成了默写题 - 力扣（LeetCode）](https://leetcode.cn/problems/find-all-anagrams-in-a-string/solution/hua-dong-chuang-kou-tong-yong-si-xiang-jie-jue-zi-/)
+
+```java
+public List<Integer> findAnagrams(String s, String p) {
+    List<Integer> res = new ArrayList<>();
+    Map<Character, Integer> need = new HashMap<>();
+    Map<Character, Integer> window = new HashMap<>();
+    for (char ch : p.toCharArray())
+        need.put(ch, need.getOrDefault(ch, 0) + 1);
+    int l = 0, r = 0; // [l, r)
+    int valid = 0;
+    while (r < s.length()) {
+        char curCh = s.charAt(r);
+        window.put(curCh, window.getOrDefault(curCh, 0) + 1);
+        if (window.get(curCh).equals(need.get(curCh))) {
+            valid++;
+        }
+        r++;
+        while (r - l == p.length()) {
+            if (valid == need.size()) {
+                res.add(l);
+            }
+            char delCh = s.charAt(l);
+            if (window.get(delCh).equals(need.get(delCh))) {
+                valid--;
+            }
+            window.put(delCh, window.get(delCh) - 1);
+            l++;
+        }
+    }
+    return res;
+}
+```
+
+
+
+
 
 
 
@@ -51,23 +93,17 @@ set、 map的使用
 
 ## 1. 查找相关问题
 
+### first stage
+
 L202 happy number
 
-
-
-L290 word pattern
-
-
-
-L205
+> 把每次循环的结果保存到set集合中。
 
 
 
-L451
+### second stage
 
-
-
-**L1 two sum**
+L1 two sum
 题目要求： 无序数组
 
 （之前有序的话用对撞指针）
@@ -80,7 +116,9 @@ L451
 > 注意排序配合set去重的技巧
 > 排序保证了结果的有序性， 再加上去重，才能实现真正的去重
 
-**L18 four sum**
+![work.drawio](D:\java\Code\15_interview\code\project-interview\doc\img\threesum_closest_drawio.png)
+
+L18 four sum
 
 > 和L15一样的思路
 
@@ -89,6 +127,8 @@ L451
 
 > 找两个数之和最接近target的最快方法是排序后加对撞指针
 > 和找等于target不同的是，只有两个数之和更接近target的时候才更新。
+
+### third stage
 
 **L454 4sumII**
 
@@ -169,15 +209,9 @@ L217 存在重复元素
 1. **给二维数组去重，二维数组中不能有一样的数组的方法？**
 
 > 1. 先排序保证了结果的有序性
->
-> 2. 再Set加上去重，才能实现真正的去重
+>2. 再Set加上去重，才能实现真正的去重
 
-2. **找两个数之和最接近target的方式**
-
-> 找两个数之和最接近target的最快方法是排序后加对撞指针
-> 和找等于target不同的是，只有两个数之和更接近target的时候才更新。
-
-3. **掌握字符串如何快速排序**
+2. **掌握字符串如何快速排序**
 
 ```java
 char[] chs = str.toCharArray();
@@ -185,12 +219,26 @@ Arrays.sort(chs);
 String sortedStr = new String(chs);
 ```
 
+
+
+3. **找两个数之和最接近target的方式**
+
+> 这种最接近的问题，都可以考虑使用treeSet的 ceil, floor功能。
+>
+> 0和3的和是3，然后在前面的集合中寻找最接近 `target - 3` 的 数值。
+
+![work.drawio](D:\java\Code\15_interview\code\project-interview\doc\img\threesum_closest_drawio.png)
+
+
+
 4. **组合数和排列数的求解公式**
 
 > 排列数: $n! / (n-m)!$
 > 组合数: $n! / (m! * (n-m)!)$
 
 **5. 查找问题也会和滑动窗口结合**
+
+利用滑动窗口保持一个索引下标条件满足。
 
 
 
