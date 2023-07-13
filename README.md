@@ -373,7 +373,42 @@ L234
 > 2. 再额外使用一个指针 ptr。起始，它指向链表头部；随后，它和 **slow**
 >    每次向后移动一个位置。最终，它们会在入环点相遇。
 
-### 2.2 技巧
+### 2.2 链表元素归类问题
+
+分为几类就创建几个链表的头节点，最后按要求串联这几个链表。
+
+经典题目：
+
+**L83 链表分区**
+
+**L328 奇偶链表**
+
+代码模板：
+
+```java
+public ListNode partition(ListNode head, int x) {
+    if (head == null) return null;
+    ListNode smallHead = new ListNode(-1);
+    ListNode largeHead = new ListNode(-2);
+    ListNode cur = head, p = smallHead, q = largeHead;
+    while (cur != null) {
+        ListNode next = cur.next;
+        if (cur.val < x) {
+            p.next = cur;
+            p = p.next;
+        } else {
+            q.next = cur;
+            q = q.next;
+        }
+        cur.next = null;
+        cur = next;
+    }
+    p.next = largeHead.next;
+    return smallHead.next;
+}
+```
+
+
 
 虚拟头
 
