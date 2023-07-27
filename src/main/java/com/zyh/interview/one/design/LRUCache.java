@@ -1,12 +1,12 @@
-package com.zyh.interview.leetcode.p3linklist;
+package com.zyh.interview.one.design;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * @description: LRU实现
+ * @description:
  * @author：zhanyh
- * @date: 2023/6/6
+ * @date: 2023/7/20
  */
 public class LRUCache {
 
@@ -19,6 +19,7 @@ public class LRUCache {
                 return size() > capacity;
             }
         };
+
     }
 
     public int get(int key) {

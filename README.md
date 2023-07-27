@@ -540,11 +540,11 @@ L199 二叉树的左视图
 
 ```java
 new Comparator<Integer>(){
-@Override
-public int compare(Integer o1,Integer o2){
+    @Override
+    public int compare(Integer o1,Integer o2){
         return o2-o1;
-        }
-        }
+    }
+}
 ```
 
 > 大顶堆， 大的在上面就是大顶堆
@@ -797,7 +797,7 @@ if(root.left==null && root.right==null)
 > 1. 设置外部私有变量
 
 ```java
-private List<List<Integer>>res=new ArrayList();
+private List<List<Integer>> res = new ArrayList();
 ```
 
 用于 保存所有递归终止位置的结果， 也就是所有符合题意得结果。

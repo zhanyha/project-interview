@@ -12,20 +12,10 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class Main {
 
-    static class Student{
-        private int age;
-    }
+    public static void main(String[] args) {
+        float a = 0.2f;
+        float b = a;
+        System.out.println(b);
 
-    public static void  main(String[] args) {
-        Student s1 = new Student();
-        s1.age = 19;
-        foo(s1);
-        System.out.println(s1.age);
-    }
-
-    private static void foo(Student s1) {
-        s1 = new Student();
-        s1.age = 20;
-        System.out.println(s1);
     }
 }

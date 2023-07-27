@@ -24,7 +24,6 @@ public class C5BinaryTreeLevelOrderTraversal {
         List<List<Integer>> res = new ArrayList<>();
         if (root == null) return res;
 
-        Map<TreeNode, Integer> map = new HashMap<>();
         Queue<Node> que = new ArrayDeque<>();
         que.add(new Node(root, 0));
         while (!que.isEmpty()) {
