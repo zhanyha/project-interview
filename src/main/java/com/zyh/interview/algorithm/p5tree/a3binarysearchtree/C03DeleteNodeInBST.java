@@ -1,9 +1,10 @@
 package com.zyh.interview.algorithm.p5tree.a3binarysearchtree;
 
+import com.zyh.interview.algorithm.p5tree.BinaryTreeUtils;
 import com.zyh.interview.algorithm.p5tree.TreeNode;
 
 /**
- * @description:
+ * @description: 450. 删除二叉搜索树中的节点
  * @author：zhanyh
  * @date: 2023/4/25
  * 给定一个二叉搜索树的根节点 root 和一个值 key，删除二叉搜索树中的key对应的节点，
@@ -37,5 +38,13 @@ public class C03DeleteNodeInBST {
             }
         }
         return root;
+    }
+
+
+    public static void main(String[] args) {
+        Integer[] nums = new Integer[]{5,3,6,2,4,null,7};
+        TreeNode tree = BinaryTreeUtils.createTree(nums);
+        TreeNode treeNode = new C03DeleteNodeInBST().deleteNode(tree, 3);
+        System.out.println(treeNode);
     }
 }
