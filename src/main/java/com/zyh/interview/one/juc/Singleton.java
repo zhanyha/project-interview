@@ -13,6 +13,7 @@ public class Singleton {
     }
 
     public static Singleton getInstance() {
+        Thread
         if (instance == null) {
             synchronized (Singleton.class) {
                 if (instance != null) {
