@@ -1,13 +1,11 @@
-package com.zyh.interview.algorithm.p7dp.a2knapsack.leetcode;
-
-import java.util.Arrays;
+package com.zyh.interview.one.p7dp.a2knapsack.leetcode;
 
 /**
  * @description: 494. 目标和
  * @author：zhanyh
- * @date: 2023/5/11
+ * @date: 2023/8/27
  */
-public class C06TargetSumDP {
+public class O06TargetSum {
     public int findTargetSumWays(int[] nums, int target) {
         int sum = 0;
         for(int i = 0;  i < nums.length; i ++)
@@ -33,9 +31,5 @@ public class C06TargetSumDP {
             }
         }
         return dp[nums.length - 1][target + sum];
-    }
-
-    public static void main(String[] args) {
-        System.out.println(new C06TargetSumDP().findTargetSumWays(new int[]{1, 1, 1, 1, 1}, 3));
     }
 }
